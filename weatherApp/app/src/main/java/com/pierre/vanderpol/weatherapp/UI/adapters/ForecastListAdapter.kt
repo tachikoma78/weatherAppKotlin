@@ -17,7 +17,7 @@ import org.jetbrains.anko.find
  * Created by piva on 2017-02-07.
  */
 class ForecastListAdapter(val weekForecast: ForecastList,
-                          val itemClick:(Forecast)->Unit) :
+                          val itemClick:(Forecast) -> Unit) :
 RecyclerView.Adapter<ForecastListAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -29,10 +29,12 @@ RecyclerView.Adapter<ForecastListAdapter.ViewHolder>() {
         holder.bindForecast(weekForecast[position])
     }
 
-    override fun getItemCount(): Int = weekForecast.size
+    // “we don’t need to specify the return type of a function if it can be computed by the compile”
+    //override fun getItemCount(): Int = weekForecast.size
+    override fun getItemCount() = weekForecast.size
 
     //“function will receive a forecast and return nothing”
-    class ViewHolder(val view: View, val itemClick: (Forecast)->Unit) : RecyclerView.ViewHolder(view){
+    class ViewHolder(val view: View, val itemClick: (Forecast) ->Unit) : RecyclerView.ViewHolder(view){
         private val iconView = view.find<ImageView>(R.id.icon)
         private val dateView = view.find<TextView>(R.id.date)
         private val descriptionView = view.find<TextView>(R.id.description)
